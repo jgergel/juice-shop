@@ -38,7 +38,7 @@
     "Johanna",
     "Alvaro Viebrantz"
   ],
-  "private": true,
+  "private": false,
   "keywords": [
     "web security",
     "web application security",
@@ -139,7 +139,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/bkimminich/juice-shop.git"
+    "url": "https://github.com/jgergel/juice-shop.git"
+  },
+  "publishConfig" : {
+    "registry" : "http://www.demo.com:8081/repository/npm-dev/"
   },
   "bugs": {
     "url": "https://github.com/bkimminich/juice-shop/issues"
