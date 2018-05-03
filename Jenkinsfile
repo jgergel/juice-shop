@@ -1,5 +1,5 @@
-import com.sonatype.jenkins.pipeline.OsTools
 pipeline {
+	import com.sonatype.jenkins.pipeline.OsTools
 	agent any
 	stages {
 		stage('Build'){
