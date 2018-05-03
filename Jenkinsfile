@@ -1,3 +1,4 @@
+import com.sonatype.jenkins.pipeline.OsTools
 pipeline {
 	agent any
 	stages {
