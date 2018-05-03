@@ -14,7 +14,7 @@ pipeline {
       	}
 		stage('Policy Evaluation Dev'){
 			steps {
-        		nexusPolicyEvaluation failBuildOnNetworkError: false, iqApplication: 'JuiceShop', iqScanPatterns: [[scanPattern: '**/*']], iqStage: 'build', jobCredentialsId: ''
+        		nexusPolicyEvaluation failBuildOnNetworkError: false, iqApplication: 'JuiceShop', iqScanPatterns: [[scanPattern: 'node_modules/**/*']], iqStage: 'build', jobCredentialsId: ''
 			}
 		}
 		stage('Publish/Deploy to Dev Repo'){
