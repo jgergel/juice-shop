@@ -14,9 +14,11 @@ pipeline {
       	}
 		stage('Policy Evaluation Dev'){
 			steps {
-        		def evaluation = nexusPolicyEvaluation failBuildOnNetworkError: false, iqApplication: 'JuiceShop', iqScanPatterns: [[scanPattern: 'node_modules/**/*']], iqStage: 'build', jobCredentialsId: ''
-				echo 'Here is the URL'
-//				echo "${applicationCompositionReportUrl}"
+				scpipt {
+        			def evaluation = nexusPolicyEvaluation failBuildOnNetworkError: false, iqApplication: 'JuiceShop', iqScanPatterns: [[scanPattern: 'node_modules/**/*']], iqStage: 'build', jobCredentialsId: ''
+					echo 'Here is the URL'
+					echo "${evaluation.applicationCompositionReportUrl}"
+				}
 			}
 		}
 		stage('Publish/Deploy to Dev Repo'){
