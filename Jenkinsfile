@@ -9,7 +9,7 @@ pipeline {
 //			}		
 //      
 			steps {
-            	sh '/apps/node-v9_11_1/bin/npm install'
+            	sh 'export PATH=$PATH;/apps/node-v9_11_1/bin/ npm install'
             }		
       	}
 		stage('Policy Evaluation Dev'){
@@ -19,7 +19,7 @@ pipeline {
 		}
 		stage('Publish/Deploy to Dev Repo'){
 			steps {
-        		sh '/apps/node-v9_11_1/bin/npm publish'
+        		sh 'export PATH=$PATH;/apps/node-v9_11_1/bin/ npm publish'
 			}
 		}
 	}
