@@ -16,7 +16,7 @@ pipeline {
 			steps {
         		nexusPolicyEvaluation failBuildOnNetworkError: false, iqApplication: 'JuiceShop', iqScanPatterns: [[scanPattern: 'node_modules/**/*']], iqStage: 'build', jobCredentialsId: ''
 				echo 'Here is the URL'
-				echo ${applicationCompositionReportUrl}
+				echo "${applicationCompositionReportUrl}"
 			}
 		}
 		stage('Publish/Deploy to Dev Repo'){
