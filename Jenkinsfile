@@ -2,15 +2,24 @@ pipeline {
 	agent any
 	stages {
 		stage('Build'){
+//			steps {
+//				nodejs('nodjs_9_11_1_auto') {
+//					sh 'npm install'
+//				}
+//			}		
+//      
 			steps {
-                nodejs('nodjs_9_11_1_auto') {
-                    sh 'npm install'
-                }
-			}		
+            	sh 'npm install'
+            }		
       	}
 		stage('Policy Evaluation Dev'){
 			steps {
-        			nexusPolicyEvaluation failBuildOnNetworkError: false, iqApplication: 'JuiceShop', iqScanPatterns: [[scanPattern: '**/*']], iqStage: 'build', jobCredentialsId: ''
+        		nexusPolicyEvaluation failBuildOnNetworkError: false, iqApplication: 'JuiceShop', iqScanPatterns: [[scanPattern: '**/*']], iqStage: 'build', jobCredentialsId: ''
+			}
+		}
+		stage('Publish/Deploy to Dev Repo'){
+			steps {
+        		sh 'npm publish'
 			}
 		}
 	}
