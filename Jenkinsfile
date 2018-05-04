@@ -17,7 +17,6 @@ pipeline {
 			steps {
 				sh "pwd; whoami"
 				script {
-					import com.sonatype.jenkins.pipeline.OsTools
 // this stript executes the nexusPolicyEvaluation Jenkins plugin action and
 // creates a environmet variable 'evaluation' storing the results of the nexusPolicyEvaluation
 // the Policy scan will only read the node_modules directory and its subdirectories, assumes node_modules is in the working directory
