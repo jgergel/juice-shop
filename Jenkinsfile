@@ -15,6 +15,7 @@ pipeline {
       	}
 		stage('Policy Evaluation Dev'){
 			steps {
+				sh "pwd"
 				script {
 // this stript executes the nexusPolicyEvaluation Jenkins plugin action and
 // creates a environmet variable 'evaluation' storing the results of the nexusPolicyEvaluation
@@ -22,7 +23,6 @@ pipeline {
         			def evaluation = nexusPolicyEvaluation failBuildOnNetworkError: false, iqApplication: 'JuiceShop', iqScanPatterns: [[scanPattern: 'node_modules/**/*']], iqStage: 'build', jobCredentialsId: ''
 // creates a file storing the Nexus Policy Evaluation URL
 					echo "${evaluation.applicationCompositionReportUrl}"
-					pwd
 					def fileURL = "./LastNexusPolicyEvaluationURL"
 					def outputFile = new File(fileURL)
 					outputFile.write("${evaluation.applicationCompositionReportUrl}")
