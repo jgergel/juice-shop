@@ -20,7 +20,7 @@ pipeline {
 // creates a environmet variable 'evaluation' storing the results of the nexusPolicyEvaluation execution 
         			def evaluation = nexusPolicyEvaluation failBuildOnNetworkError: false, iqApplication: 'JuiceShop', iqScanPatterns: [[scanPattern: 'node_modules/**/*']], iqStage: 'build', jobCredentialsId: ''
 // creates file storing the Nexus Policy Evaluation URL
-					echo "${evaluation.applicationCompositionReportUrl}" > ./lastNexusPolicyEvaluationURL
+					echo "${evaluation.applicationCompositionReportUrl}"
 					def fileURL = "LastNexusPolicyEvaluationURL"
 					def outputFile = new File(fileURL)
 					outputFile.write("${evaluation.applicationCompositionReportUrl}")
