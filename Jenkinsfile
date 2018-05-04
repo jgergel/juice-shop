@@ -7,7 +7,7 @@ pipeline {
 					sh 'npm install'
 				}
 			}		
-// following lines can be used instead of auto installing during the build
+// following lines commented out can be used instead of auto installing during the build
 // in this case npm v9.11.1 is installed on build server located in the apps directory      
 //			steps {
 //            	sh 'export PATH=$PATH:/apps/node-v9_11_1/bin/; npm install'
@@ -16,12 +16,13 @@ pipeline {
 		stage('Policy Evaluation Dev'){
 			steps {
 				script {
-// this line runs the nexusPolicyEvaluation Jenkins plugin action  and
-// creates a environmet variable 'evaluation' storing the results of the nexusPolicyEvaluation execution 
+// this stript executes the nexusPolicyEvaluation Jenkins plugin action and
+// creates a environmet variable 'evaluation' storing the results of the nexusPolicyEvaluation
+// the Policy scan will only read the node_modules directory and its subdirectories, assumes node_modules is in the working directory
         			def evaluation = nexusPolicyEvaluation failBuildOnNetworkError: false, iqApplication: 'JuiceShop', iqScanPatterns: [[scanPattern: 'node_modules/**/*']], iqStage: 'build', jobCredentialsId: ''
-// creates file storing the Nexus Policy Evaluation URL
+// creates a file storing the Nexus Policy Evaluation URL
 					echo "${evaluation.applicationCompositionReportUrl}"
-					def fileURL = "LastNexusPolicyEvaluationURL"
+					def fileURL = "./LastNexusPolicyEvaluationURL"
 					def outputFile = new File(fileURL)
 					outputFile.write("${evaluation.applicationCompositionReportUrl}")
 				}
@@ -29,8 +30,11 @@ pipeline {
 		}
 		stage('Publish/Deploy to Dev Repo'){
 			steps {
-        		sh 'export PATH=$PATH:/apps/node-v9_11_1/bin/; npm publish'
+        		sh 'npm publish'
 			}
+//			steps {
+//        		sh 'export PATH=$PATH:/apps/node-v9_11_1/bin/; npm publish'
+//			}			
 		}
 	}
 }
