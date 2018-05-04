@@ -24,7 +24,7 @@ pipeline {
 		stage('Publish/Deploy to Dev Repo'){
 			steps {
         		sh 'export PATH=$PATH:/apps/node-v9_11_1/bin/; npm publish'
-				sh echo "${evaluation.applicationCompositionReportUrl}"
+				sh 'echo "${evaluation.applicationCompositionReportUrl}"''
 			}
 		}
 	}
