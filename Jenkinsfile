@@ -7,7 +7,8 @@ pipeline {
 					sh 'npm install'
 				}
 			}		
-// can be used instead of installing during the build      
+// following lines can be used instead of auto installing during the build
+// in this case npm v9.11.1 is installed on build server located in the apps directory      
 //			steps {
 //            	sh 'export PATH=$PATH:/apps/node-v9_11_1/bin/; npm install'
 //			}		
@@ -24,7 +25,9 @@ pipeline {
 		stage('Publish/Deploy to Dev Repo'){
 			steps {
         		sh 'export PATH=$PATH:/apps/node-v9_11_1/bin/; npm publish'
-				sh 'echo "${evaluation.applicationCompositionReportUrl}"'
+				script {
+					echo "${evaluation.applicationCompositionReportUrl}"
+				}
 			}
 		}
 	}
