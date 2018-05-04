@@ -19,7 +19,7 @@ pipeline {
 // this line runs the nexusPolicyEvaluation Jenkins plugin action  and
 // creates a environmet variable 'evaluation' storing the results of the nexusPolicyEvaluation execution 
         			def evaluation = nexusPolicyEvaluation failBuildOnNetworkError: false, iqApplication: 'JuiceShop', iqScanPatterns: [[scanPattern: 'node_modules/**/*']], iqStage: 'build', jobCredentialsId: ''
-					echo 'Here is the URL'
+// create file storing the Nexus Policy Evaluation URL
 					echo "${evaluation.applicationCompositionReportUrl}" >> ./lastNexusPolicyEvaluationURL
 				}
 			}
