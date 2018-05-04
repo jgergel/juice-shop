@@ -15,7 +15,7 @@ pipeline {
       	}
 		stage('Policy Evaluation Dev'){
 			steps {
-				sh "pwd"
+				sh "pwd; whoami"
 				script {
 // this stript executes the nexusPolicyEvaluation Jenkins plugin action and
 // creates a environmet variable 'evaluation' storing the results of the nexusPolicyEvaluation
