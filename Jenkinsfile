@@ -2,15 +2,15 @@ pipeline {
 	agent any
 	stages {
 		stage('Build'){
-//			steps {
-//				nodejs('nodjs_9_11_1_auto') {
-//					sh 'npm install'
-//				}
-//			}		
-//      
 			steps {
-            	sh 'export PATH=$PATH:/apps/node-v9_11_1/bin/; npm install'
-            }		
+				nodejs('nodjs_9_11_1_auto') {
+					sh 'npm install'
+				}
+			}		
+// can be used instead of installing during the build      
+//			steps {
+//            	sh 'export PATH=$PATH:/apps/node-v9_11_1/bin/; npm install'
+//			}		
       	}
 		stage('Policy Evaluation Dev'){
 			steps {
@@ -24,6 +24,7 @@ pipeline {
 		stage('Publish/Deploy to Dev Repo'){
 			steps {
         		sh 'export PATH=$PATH:/apps/node-v9_11_1/bin/; npm publish'
+				sh echo "${evaluation.applicationCompositionReportUrl}"
 			}
 		}
 	}
