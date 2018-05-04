@@ -33,7 +33,9 @@ pipeline {
 		}
 		stage('Publish/Deploy to Dev Repo'){
 			steps {
-        		sh 'npm publish'
+				nodejs('nodjs_9_11_1_auto') {
+					sh 'npm publish'
+				}
 			}
 //			steps {
 //        		sh 'export PATH=$PATH:/apps/node-v9_11_1/bin/; npm publish'
