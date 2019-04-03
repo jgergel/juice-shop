@@ -38,7 +38,7 @@
     "Johanna",
     "Alvaro Viebrantz"
   ],
-  "private": true,
+  "private": false,
   "keywords": [
     "web security",
     "web application security",
@@ -69,7 +69,7 @@
     "file-stream-rotator": "~0.2",
     "fs-extra": "~5.0",
     "glob": "~7.1.2",
-    "grunt": "~1.0",
+    "grunt": "^1.0.2",
     "grunt-angular-templates": "~1.1",
     "grunt-contrib-clean": "~1.1",
     "grunt-contrib-compress": "~1.4",
@@ -139,7 +139,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/bkimminich/juice-shop.git"
+    "url": "https://github.com/jgergel/juice-shop.git"
+  },
+  "publishConfig": {
+    "registry": "http://www.demo.com:8081/repository/npm-dev/"
   },
   "bugs": {
     "url": "https://github.com/bkimminich/juice-shop/issues"
