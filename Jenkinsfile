@@ -4,7 +4,7 @@ pipeline {
 		stage('Build'){
 			steps {
 				nodejs('nodjs_9_11_1_auto') {
-					sh 'npm install'
+					sh 'npm install --production'
 				}
 			}		
 // following lines commented out can be used instead of auto installing during the build
