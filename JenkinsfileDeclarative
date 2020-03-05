@@ -4,13 +4,13 @@ pipeline {
 		stage('Build'){
 			steps {
 				nodejs('nodjs_9_11_1_auto') {
-					sh 'npm install'
+					sh 'npm install --production'
 				}
 			}		
       	}
 		stage('Policy Evaluation Dev'){
 			steps {
-				nexusPolicyEvaluation failBuildOnNetworkError: false, iqApplication: 'JuiceShop', iqScanPatterns: [[scanPattern: 'node_modules/**/*']], iqStage: 'build', jobCredentialsId: ''
+				nexusPolicyEvaluation failBuildOnNetworkError: false, iqApplication: 'juiceshop', iqScanPatterns: [[scanPattern: 'node_modules/**/*']], iqStage: 'release', jobCredentialsId: ''
 			}
 		}
 		stage('Publish/Deploy to Dev Repo'){
